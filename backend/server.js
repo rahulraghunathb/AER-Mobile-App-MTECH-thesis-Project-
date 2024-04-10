@@ -1,8 +1,8 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const sequelize = require('./database')
-const User = require('./models/User')
-const ContactForm = require('./models/contactForm')
+const User = require('./models/user.model')
+const ContactForm = require('./models/contactForm.model')
 const cors = require('cors')
 
 const app = express()
