@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Aer",
+    "slug": "Aer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logoMark.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/logoText.png",
+      "resizeMode": "centre",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "sgf.fgsdfgds.sdfg",
+      "permissions": ["CAMERA", "RECORD_AUDIO"]
+    },
+    "web": {
+      "favicon": "./assets/logoMark.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d17e92d2-e82e-4542-95ec-e9906b8a056c"
+      }
+    },
+    "plugins": ["expo-router"]
+  }
+}
