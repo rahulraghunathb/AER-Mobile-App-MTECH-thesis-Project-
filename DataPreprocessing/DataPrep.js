@@ -15,8 +15,9 @@ const sequelize = new Sequelize({
 })
 
 const AirQualityData = sequelize.define('AirQualityData', {
-  City: DataTypes.STRING,
-  Datetime: DataTypes.DATE,
+  DeviceID: DataTypes.STRING,
+  Location: DataTypes.STRING,
+  Timestamp: DataTypes.DATE,
   'PM2.5': DataTypes.FLOAT,
   PM10: DataTypes.FLOAT,
   NO: DataTypes.FLOAT,
@@ -30,7 +31,9 @@ const AirQualityData = sequelize.define('AirQualityData', {
   Toluene: DataTypes.FLOAT,
   Xylene: DataTypes.FLOAT,
   AQI: DataTypes.FLOAT,
-  AQI_Bucket: DataTypes.STRING
+  AQI_Bucket: DataTypes.STRING,
+  Temp: DataTypes.FLOAT,
+  Humidity: DataTypes.INTEGER
 })
 
 const csvFilePath = 'final_rahul_data.csv'
@@ -47,8 +50,6 @@ const csvFilePath = 'final_rahul_data.csv'
     fs.createReadStream(csvFilePath)
       .pipe(csv())
       .on('data', (row) => {
-        // Process each row before insertion (e.g., type conversion, validation)
-        // Example: Convert string date to Date object
         row.Datetime = new Date(row.Timestamp)
         rows.push(row)
       })
