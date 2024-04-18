@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt')
 const sequelize = require('./database')
 const User = require('./models/user.model')
 const ContactForm = require('./models/contactForm.model')
+const AirQualityData = require('./models/airQualityData.model')
 const cors = require('cors')
+const { Op } = require('sequelize')
 
 const app = express()
 
@@ -87,5 +89,27 @@ app.post('/contactForm', async (req, res) => {
   } catch (error) {
     console.error('Error processing contact form:', error)
     res.status(500).json({ error: 'Failed to process contact form' })
+  }
+})
+
+app.get('/IotData', async (req, res) => {
+  try {
+    const currentTimestamp = new Date()
+
+    // Find the nearest air quality data to the current timestamp
+    const data = await AirQualityData.findOne({
+      where: {
+        Timestamp: {
+          [Op.lte]: currentTimestamp
+        }
+        // DeviceID: '1B345'
+      },
+      order: [['Timestamp', 'DESC']]
+    })
+
+    res.status(200).json(data)
+  } catch (error) {
+    console.error('Error getting IotData :', error.message)
+    res.status(500).json({ error: 'Error getting IotData' })
   }
 })

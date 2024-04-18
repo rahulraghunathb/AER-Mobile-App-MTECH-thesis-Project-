@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 const csv = require('csv-parser')
 const fs = require('fs')
 const dotenv = require('dotenv')
+const AirQualityData = require('../backend/models/airQualityData.model')
 
 dotenv.config()
 
@@ -12,28 +13,6 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   logging: false
-})
-
-const AirQualityData = sequelize.define('AirQualityData', {
-  DeviceID: DataTypes.STRING,
-  Location: DataTypes.STRING,
-  Timestamp: DataTypes.DATE,
-  'PM2.5': DataTypes.FLOAT,
-  PM10: DataTypes.FLOAT,
-  NO: DataTypes.FLOAT,
-  NO2: DataTypes.FLOAT,
-  NOx: DataTypes.FLOAT,
-  NH3: DataTypes.FLOAT,
-  CO: DataTypes.FLOAT,
-  SO2: DataTypes.FLOAT,
-  O3: DataTypes.FLOAT,
-  Benzene: DataTypes.FLOAT,
-  Toluene: DataTypes.FLOAT,
-  Xylene: DataTypes.FLOAT,
-  AQI: DataTypes.FLOAT,
-  AQI_Bucket: DataTypes.STRING,
-  Temp: DataTypes.FLOAT,
-  Humidity: DataTypes.INTEGER
 })
 
 const csvFilePath = 'final_rahul_data.csv'

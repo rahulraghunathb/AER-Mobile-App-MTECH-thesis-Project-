@@ -284,7 +284,7 @@ const DashboardScreen = ({ route }) => {
               fontSize: 15
             }}
           >
-            POOR
+            {/* POOR */}
           </Text>
         </View>
 

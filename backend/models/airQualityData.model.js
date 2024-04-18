@@ -21,7 +21,7 @@ const AirQualityData = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false
     },
-    PM25: {
+    'PM2.5': {
       type: DataTypes.FLOAT,
       allowNull: false
     },

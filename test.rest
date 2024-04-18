@@ -1,0 +1,21 @@
+### 
+GET  http://localhost:8000/IotData
+
+###
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email":"rahulraghunathb2.0@gmail.com",
+    "password": "1234567890aA&"
+}
+
+
+###
+POST http://localhost:8000/register
+Content-Type: application/json
+
+{
+    "email":"rahulraghunathb2.0@gmail.com",
+    "password": "1234567890aA&"
+}

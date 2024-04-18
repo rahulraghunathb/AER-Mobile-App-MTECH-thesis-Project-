@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Nearest Air Quality Data</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .station-info {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Nearest Air Quality Data</h1>
+      <div class="station-info">
+        <p>
+          <strong>Nearest Station:</strong> <span id="nearest-station"></span>
+        </p>
+        <p><strong>City:</strong> <span id="city"></span></p>
+        <p><strong>Last Update:</strong> <span id="last-update"></span></p>
+        <p><strong>Pollutant ID:</strong> <span id="pollutant-id"></span></p>
+        <p><strong>Pollutant Min:</strong> <span id="pollutant-min"></span></p>
+        <p><strong>Pollutant Max:</strong> <span id="pollutant-max"></span></p>
+        <p><strong>Pollutant Avg:</strong> <span id="pollutant-avg"></span></p>
+      </div>
+    </div>
+    <script src="testing.js"></script>
+  </body>
+</html>
