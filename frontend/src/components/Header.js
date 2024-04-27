@@ -1,4 +1,3 @@
-// Header.js
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -35,23 +34,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 5,
+    paddingTop: 30,
     width: '100%',
-    position: 'absolute',
+    position: 'relative',
     top: 0,
     zIndex: 1,
-    marginTop: 30
+    marginTop: 0
   },
   backArrow: {
     marginRight: 10
   },
   arrowText: {
-    color: '#333', // Set color for back arrow text
+    color: '#333',
     fontSize: 20
   },
   logoContainer: {
     flex: 1,
-    alignItems: 'center'
+    marginLeft: 90
   },
   logo: {
     width: 160,

@@ -17,33 +17,35 @@ const AddDeviceScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <>
       <Header />
-      <View style={styles.scannerContainer}>
-        <View style={styles.scannerIcon}></View>
-        <Text style={styles.scannerResultText}>{scannerResult}</Text>
-      </View>
-      <Image
-        source={require('../../assets/qrcde.png')}
-        style={styles.iconImage}
-      />
+      <View style={styles.container}>
+        <View style={styles.scannerContainer}>
+          <View style={styles.scannerIcon}></View>
+          <Text style={styles.scannerResultText}>{scannerResult}</Text>
+        </View>
+        <Image
+          source={require('../../assets/qrcde.png')}
+          style={styles.iconImage}
+        />
 
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#359740' }]}
-          onPress={handleAddDevice}
-        >
-          <Text style={styles.buttonText}>Add Device</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#c93514' }]}
-          onPress={handleRetake}
-        >
-          <Text style={styles.buttonText}>Retake</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: '#359740' }]}
+            onPress={handleAddDevice}
+          >
+            <Text style={styles.buttonText}>Add Device</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: '#c93514' }]}
+            onPress={handleRetake}
+          >
+            <Text style={styles.buttonText}>Retake</Text>
+          </TouchableOpacity>
+        </View>
+        <Footer activeOption="phone-portrait" />
       </View>
-      <Footer activeOption="phone-portrait" />
-    </View>
+    </>
   )
 }
 
@@ -51,8 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
-    // backgroundColor: '#FFFFFF'
+    marginTop: 50
   },
   scannerContainer: {
     width: '80%',

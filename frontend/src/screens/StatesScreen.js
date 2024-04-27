@@ -6,6 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { useNavigation } from '@react-navigation/native'
 
 const StatesScreen = () => {
@@ -15,7 +17,7 @@ const StatesScreen = () => {
   useEffect(() => {
     const readAirQualityData = async () => {
       try {
-        const data = require('./air_quality_data.json')
+        const data = require('./airQualityData.json')
         const states = [...new Set(data.map((station) => station.state))]
         setUniqueStates(states)
       } catch (error) {
@@ -31,18 +33,22 @@ const StatesScreen = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Unique States</Text>
-      {uniqueStates.map((state, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => handleStatePress(state)}
-          style={styles.stateContainer}
-        >
-          <Text style={styles.stateText}>{state}</Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+    <>
+      <Header />
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.header}>Select a state</Text>
+        {uniqueStates.map((state, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => handleStatePress(state)}
+            style={styles.stateContainer}
+          >
+            <Text style={styles.stateText}>{state}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+      <Footer />
+    </>
   )
 }
 
@@ -50,12 +56,14 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     alignItems: 'center',
-    paddingVertical: 20
+    flexDirection: 'column',
+    paddingVertical: 10
   },
   header: {
-    fontSize: 24,
+    fontSize: 34,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
+    color: '#1B5004'
   },
   stateContainer: {
     backgroundColor: '#f0f0f0',
@@ -65,7 +73,8 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   stateText: {
-    fontSize: 18
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 })
 

@@ -55,24 +55,25 @@ const RegisterScreen = () => {
     clearErrors()
 
     try {
-      const response = await fetch('http://10.145.98.235:8000/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      })
+      // const response = await fetch('http://10.145.98.235:8000/register', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({ email, password })
+      // })
 
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data) // Log the server response
-        navigation.navigate('Login')
-      } else {
-        console.error('Registration failed:', response.status)
-        if (response.status === 400) {
-          setRegistrationError('Email is already in use')
-        }
-      }
+      // if (response.ok) {
+      //   const data = await response.json()
+      //   console.log(data) // Log the server response
+      //   navigation.navigate('Login')
+      // } else {
+      //   console.error('Registration failed:', response.status)
+      //   if (response.status === 400) {
+      //     setRegistrationError('Email is already in use')
+      //   }
+      // }
+      navigation.navigate('Login')
     } catch (error) {
       console.error('Error during registration:', error)
       setRegistrationError('Failed to register user')

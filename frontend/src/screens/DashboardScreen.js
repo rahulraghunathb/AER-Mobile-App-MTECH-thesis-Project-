@@ -7,7 +7,7 @@ import {
   Text,
   ScrollView
 } from 'react-native'
-import { LineChart, BarChart } from 'react-native-chart-kit'
+import { LineChart } from 'react-native-chart-kit'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { SelectList } from 'react_native_simple_dropdown_select_list'
@@ -245,6 +245,7 @@ const DashboardScreen = ({ route }) => {
   const aqi = Math.floor(Math.random() * 501)
   return (
     <>
+      <Header />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.TextControlContainer}>
           <Text
@@ -409,7 +410,7 @@ const styles = StyleSheet.create({
   TextControlContainer: {
     alignItems: 'center',
     marginBottom: 10,
-    marginTop: 30
+    marginTop: 10
   },
   sensorContainer: {
     marginTop: 20,

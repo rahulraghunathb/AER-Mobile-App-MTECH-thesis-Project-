@@ -8,6 +8,7 @@ import {
   ImageBackground
 } from 'react-native'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 import img1 from '../assests/air_quality_image.webp'
 import img2 from '../assests/delhi_pollution_image.webp'
 import img3 from '../assests/tourism_impact_image.webp'
@@ -54,13 +55,16 @@ const BlogScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.TextContainer}>Blog Posts</Text>
+    <>
+      <Header />
+      <View style={styles.container}>
+        <Text style={styles.TextContainer}>Blog Posts</Text>
 
-      <View style={styles.blogContainer}>{renderBlogCards()}</View>
+        <View style={styles.blogContainer}>{renderBlogCards()}</View>
 
-      <Footer activeOption="book-outline" />
-    </View>
+        <Footer activeOption="book-outline" />
+      </View>
+    </>
   )
 }
 
@@ -73,7 +77,7 @@ const styles = StyleSheet.create({
   TextContainer: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 50
+    marginTop: 10
   },
   blogContainer: {
     flex: 1,

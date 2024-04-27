@@ -27,7 +27,7 @@ async function fetchAllAirQualityData() {
 
 // Function to save data to a JSON file
 function saveDataToFile(data) {
-  fs.writeFile('air_quality_data.json', JSON.stringify(data), (err) => {
+  fs.writeFile('airQualityData.json', JSON.stringify(data), (err) => {
     if (err) {
       console.error('Error writing to file:', err)
     } else {
@@ -48,3 +48,6 @@ async function fetchAndSaveData() {
 
 // Call the function to fetch and save data
 fetchAndSaveData()
+
+// Run the function every 24 hours
+setInterval(fetchAndSaveData, 24 * 60 * 60 * 1000)

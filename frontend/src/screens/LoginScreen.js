@@ -35,26 +35,27 @@ const LoginScreen = () => {
     setRegistrationError('')
 
     try {
-      const response = await fetch('http://10.145.98.235:8000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      })
+      // const response = await fetch('http://10.145.98.235:8000/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({ email, password })
+      // })
 
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data) // Log the server response
+      // if (response.ok) {
+      //   const data = await response.json()
+      //   console.log(data) // Log the server response
 
-        // Navigate to HomeScreen on successful login
-        navigation.navigate('Home')
-      } else {
-        console.error('Login failed:', response.status)
-        if (response.status === 400) {
-          setRegistrationError('Email or password is incorrect')
-        }
-      }
+      //   // Navigate to HomeScreen on successful login
+      //   navigation.navigate('Home')
+      // } else {
+      //   console.error('Login failed:', response.status)
+      //   if (response.status === 400) {
+      //     setRegistrationError('Email or password is incorrect')
+      //   }
+      // }
+      navigation.navigate('Home')
     } catch (error) {
       console.error('Error during login:', error)
       setRegistrationError('Failed to login')

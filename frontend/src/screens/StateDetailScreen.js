@@ -1,56 +1,129 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { useRoute } from '@react-navigation/native'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import { Ionicons } from '@expo/vector-icons'
 
 const StateDetailScreen = () => {
   const route = useRoute()
   const { state } = route.params
 
-  const data = require('./air_quality_data.json')
+  const data = require('./airQualityData.json')
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Data for {state}</Text>
-      <View style={styles.dataContainer}>
-        {data
-          .filter((item) => item.state === state)
-          .map((item, index) => (
-            <View key={index} style={styles.dataItem}>
-              <Text>City: {item.city}</Text>
-              <Text>Station: {item.station}</Text>
-              <Text>Last Update: {item.last_update}</Text>
-              <Text>Pollutant ID: {item.pollutant_id}</Text>
-              <Text>Pollutant Min: {item.pollutant_min}</Text>
-              <Text>Pollutant Max: {item.pollutant_max}</Text>
-              <Text>Pollutant Avg: {item.pollutant_avg}</Text>
-            </View>
-          ))}
-      </View>
-    </ScrollView>
+    <>
+      <Header />
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.header}>Air quality in {state.toUpperCase()}</Text>
+        <View style={styles.dataContainer}>
+          {data
+            .filter((item) => item.state === state)
+            .map((item, index) => (
+              <View key={index} style={styles.dataItem}>
+                <View style={styles.row}>
+                  <Ionicons
+                    name="ios-navigate"
+                    size={25}
+                    color="red"
+                    style={styles.icon}
+                  />
+                  <Text style={styles.heading}>City: {item.city}</Text>
+                </View>
+                <View style={styles.row}>
+                  <Ionicons
+                    name="md-pin"
+                    size={25}
+                    color="#581845"
+                    style={styles.icon}
+                  />
+                  <Text style={styles.heading}>Station: {item.station}</Text>
+                </View>
+                <View style={styles.row}>
+                  <Ionicons
+                    name="md-cloud"
+                    size={25}
+                    color="#89D5F4"
+                    style={styles.icon}
+                  />
+                  <Text style={styles.heading}>
+                    Pollutant ID: {item.pollutant_id}
+                  </Text>
+                </View>
+                <View style={styles.row}>
+                  <Ionicons
+                    name="md-time"
+                    size={25}
+                    color="#15191A"
+                    style={styles.icon}
+                  />
+                  <Text style={styles.heading}>
+                    Last Update: {item.last_update}
+                  </Text>
+                </View>
+                <Text style={styles.heading}>
+                  Pollutant Min: {item.pollutant_min}
+                </Text>
+                <Text style={styles.heading}>
+                  Pollutant Max: {item.pollutant_max}
+                </Text>
+                <Text style={styles.heading}>
+                  Pollutant Avg: {item.pollutant_avg}
+                </Text>
+              </View>
+            ))}
+        </View>
+      </ScrollView>
+      <Footer />
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
+    flexGrow: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    flexDirection: 'column',
+    paddingVertical: 20,
+    paddingHorizontal: 15
   },
   header: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
+    color: '#500431'
   },
   dataContainer: {
-    marginTop: 10,
-    width: '100%'
+    width: '100%',
+    marginBottom: 80
   },
   dataItem: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 17.5,
+    marginBottom: 12.5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2
+    },
+    shadowOpacity: 0.35,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5
+  },
+  icon: {
+    marginRight: 5
+  },
+  heading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginRight: 5,
+    color: '#624928'
   }
 })
 
