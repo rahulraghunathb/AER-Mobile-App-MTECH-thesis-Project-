@@ -1,4 +1,3 @@
-// Footer.js
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -8,7 +7,8 @@ const Footer = ({ activeOption }) => {
   const navigation = useNavigation()
 
   const options = [
-    { name: 'phone-portrait', text: 'Add Device', route: 'AddDevice' },
+    { name: 'qr-code-outline', text: 'QR', route: 'AddDevice' },
+    { name: 'earth', text: 'Location', route: 'States' },
     { name: 'home-outline', text: 'Home', route: 'Home' },
     { name: 'book-outline', text: 'Blog', route: 'Blog' },
     { name: 'mail-outline', text: 'Contact Us', route: 'ContactUs' }

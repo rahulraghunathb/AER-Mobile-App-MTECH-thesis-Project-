@@ -1,5 +1,4 @@
-// HomeScreen.js
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import {
   View,
   Text,
@@ -7,11 +6,13 @@ import {
   TouchableOpacity,
   Animated,
   TextInput,
-  Alert
+  Image,
+  ScrollView
 } from 'react-native'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useNavigation } from '@react-navigation/native'
+import img from '../assests/device-img.png'
 
 const HomeScreen = () => {
   const [scaleValue] = useState(new Animated.Value(1))
@@ -38,13 +39,6 @@ const HomeScreen = () => {
     }).start()
   }
 
-  const handleCardPressOut = () => {
-    Animated.spring(scaleValue, {
-      toValue: 1,
-      useNativeDriver: true
-    }).start()
-  }
-
   const handleCardPress = (deviceNumber) => {
     navigation.navigate('Dashboard', { deviceNumber }) // Navigate to the Dashboard screen
   }
@@ -62,52 +56,61 @@ const HomeScreen = () => {
     }
   }
 
+  const renderCard = (deviceNumber) => (
+    <TouchableOpacity
+      key={deviceNumber}
+      onPressIn={handleCardPressIn}
+      onPress={() => handleCardPress(deviceNumber)}
+    >
+      <Image source={img} style={styles.image} />
+      <Text style={styles.imageText}>DeviceID: {deviceNumber}</Text>
+    </TouchableOpacity>
+  )
+
   // Changed to renderCards based on searchText
   const renderCards = () => {
     const cardsToRender = searchText ? filteredCards : cards
     return cardsToRender.map((deviceNumber) => renderCard(deviceNumber))
   }
 
-  const renderCard = (deviceNumber) => (
-    <TouchableOpacity
-      key={deviceNumber}
-      onPressIn={handleCardPressIn}
-      onPressOut={handleCardPressOut}
-      onPress={() => handleCardPress(deviceNumber)}
-    >
-      <Animated.View
-        style={[styles.card, { transform: [{ scale: scaleValue }] }]}
-      >
-        <Text style={styles.cardText}>DeviceID {deviceNumber}</Text>
-      </Animated.View>
-    </TouchableOpacity>
-  )
-
   return (
-    <View style={styles.container}>
+    <>
       <Header />
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.insideContainer}>
+          <View style={styles.searchContainer}>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search Device ID"
+              value={searchText}
+              onChangeText={(text) => setSearchText(text.toUpperCase())}
+            />
+            <TouchableOpacity
+              style={styles.searchButton}
+              onPress={handleSearch}
+            >
+              <Text style={styles.searchButtonText}>Search</Text>
+            </TouchableOpacity>
+          </View>
 
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search Device ID"
-          value={searchText}
-          onChangeText={(text) => setSearchText(text.toUpperCase())}
-        />
-        <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-          <Text style={styles.searchButtonText}>Search</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.contentContainer}>{renderCards()}</View>
-
+          <View style={styles.contentContainer}>{renderCards()}</View>
+        </View>
+      </ScrollView>
       <Footer activeOption="home-outline" />
-    </View>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
+    alignItems: 'center',
+    flexDirection: 'column'
+
+    // paddingVertical: 20,
+    // paddingHorizontal: 15
+  },
+  insideContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
@@ -145,21 +148,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    marginBottom: 90
   },
-  card: {
+  image: {
     width: 150,
-    height: 100,
-    backgroundColor: '#DEDCED',
-    margin: 10,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 15
+    height: 150,
+    resizeMode: 'cover'
   },
-  cardText: {
-    fontSize: 16,
-    fontWeight: 'bold'
+  imageText: {
+    fontSize: 12,
+    fontWeight: '700'
   }
 })
 

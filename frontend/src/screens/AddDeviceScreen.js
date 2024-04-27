@@ -43,7 +43,7 @@ const AddDeviceScreen = () => {
             <Text style={styles.buttonText}>Retake</Text>
           </TouchableOpacity>
         </View>
-        <Footer activeOption="phone-portrait" />
+        <Footer activeOption="qr-code-outline" />
       </View>
     </>
   )

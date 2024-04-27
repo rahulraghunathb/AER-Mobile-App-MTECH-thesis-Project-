@@ -47,7 +47,7 @@ const StatesScreen = () => {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <Footer />
+      <Footer activeOption="earth" />
     </>
   )
 }
