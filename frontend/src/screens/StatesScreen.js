@@ -43,7 +43,7 @@ const StatesScreen = () => {
             onPress={() => handleStatePress(state)}
             style={styles.stateContainer}
           >
-            <Text style={styles.stateText}>{state}</Text>
+            <Text style={styles.stateText}>{state.toUpperCase()}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>

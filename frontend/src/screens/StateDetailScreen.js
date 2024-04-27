@@ -4,6 +4,7 @@ import { useRoute } from '@react-navigation/native'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Ionicons } from '@expo/vector-icons'
+import RenderMap from '../components/RenderMap'
 
 const StateDetailScreen = () => {
   const route = useRoute()
@@ -11,11 +12,28 @@ const StateDetailScreen = () => {
 
   const data = require('./airQualityData.json')
 
+  // Extracting coordinates from data
+  const coordinates = data
+    .filter((item) => item.state === state)
+    .map((item) => ({
+      latitude: item.latitude,
+      longitude: item.longitude
+    }))
+
   return (
     <>
       <Header />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.header}>Air quality in {state.toUpperCase()}</Text>
+
+        <View style={styles.mapContainer}>
+          <RenderMap
+            latitude={parseFloat(coordinates[0].latitude)}
+            longitude={parseFloat(coordinates[0].longitude)}
+            markers={coordinates}
+          />
+        </View>
+
         <View style={styles.dataContainer}>
           {data
             .filter((item) => item.state === state)
@@ -124,6 +142,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 5,
     color: '#624928'
+  },
+  mapContainer: {
+    width: '100%',
+    height: 300,
+    marginBottom: 30
   }
 })
 
